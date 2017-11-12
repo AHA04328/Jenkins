@@ -82,9 +82,11 @@ def call(body) {
 
   // Only mount registry secret if it's present
   def volumes = [ hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock') ]
-  if (registrySecret) {
-    volumes += secretVolume(secretName: registrySecret, mountPath: '/msb_reg_sec')
-  }
+  
+  //Comment out because "if(registrySecret)" is always true.
+  //if (registrySecret) {
+  //  volumes += secretVolume(secretName: registrySecret, mountPath: '/msb_reg_sec')
+  //}
   print "microserviceBuilderPipeline: volumes = ${volumes}"
 
   podTemplate(
