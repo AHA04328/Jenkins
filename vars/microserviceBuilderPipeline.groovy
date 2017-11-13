@@ -139,9 +139,9 @@ def call(body) {
                 }
               }
               buildCommand += " ."
-              if (registrySecret) {
-                sh "ln -s /msb_reg_sec/.dockercfg /home/jenkins/.dockercfg"
-              }
+              //if (registrySecret) {
+              //  sh "ln -s /msb_reg_sec/.dockercfg /home/jenkins/.dockercfg"
+              //}
               sh buildCommand
               if (registry) {
                 sh "docker tag ${image}:${imageTag} ${registry}${image}:${imageTag}"
@@ -176,9 +176,9 @@ def call(body) {
           container ('kubectl') {
             sh "kubectl create namespace ${testNamespace}"
             sh "kubectl label namespace ${testNamespace} test=true"
-            if (registrySecret) {
-              giveRegistryAccessToNamespace (testNamespace, registrySecret)
-            }
+            //if (registrySecret) {
+            //  giveRegistryAccessToNamespace (testNamespace, registrySecret)
+            //}
           }
           
           container ('helm') {
