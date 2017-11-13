@@ -145,6 +145,7 @@ def call(body) {
               sh buildCommand
               if (registry) {
                 sh "docker tag ${image}:${imageTag} ${registry}${image}:${imageTag}"
+                sh "docker login -u admin -p admin"
                 sh "docker push ${registry}${image}:${imageTag}"
               }
             }
